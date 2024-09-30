@@ -64,5 +64,5 @@ class LimitExceededException extends ApiError {
 }
 
 
-export { BadRequestException, LimitExceededException, NotFoundException, UnauthorizedException }
+export { BadRequestException, LimitExceededException, NotFoundException, UnauthorizedException, ApiError }
 
