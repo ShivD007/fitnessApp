@@ -68,9 +68,16 @@ const login = asyncHandler(async (req, res, next) => {
     const accessToken = genrateToken(existUser, ACCESS_TOKEN_EXPIRY)
     const refreshToken = genrateToken(existUser, REFRESH_TOKEN_EXPIRY)
 
+    const userData = {
+        id: existUser._id,
+        name: existUser.name,
+        email: existUser.email
+    }
+
 
     res.status(200).json(new ApiResponse({
         status: 200, message: "login successfully", data: {
+            user: userData,
             accessToken,
             refreshToken
         }
@@ -79,14 +86,14 @@ const login = asyncHandler(async (req, res, next) => {
 })
 
 
-const getUsers = asyncHandler(async (req, res, next) => {
+// const getUsers = asyncHandler(async (req, res, next) => {
 
-    const user = await User.find()
+//     const user = await User.find()
 
-    res.status(200).json(new ApiResponse({
-        status: 200, message: "login successfully", data: user
-    }))
+//     res.status(200).json(new ApiResponse({
+//         status: 200, message: "login successfully", data: user
+//     }))
 
-})
+// })
 
-export { registerUser, login, getUsers }
+export { registerUser, login }
