@@ -25,12 +25,12 @@ import userRouter from './routes/user.routes.js'
 import excerciseRouter from "./routes/exercise.routes.js";
 import excerciseCategoryRouter from "./routes/exerciseCategory.routes.js";
 import exerciseLogRouter from "./routes/exerciseLog.routes.js";
-import { refreshToken } from "./utils/auth.js";
-
+import { auth } from "./utils/auth.js";
 
 // routes declaration
-app.use("/api/v1/refresh_token", refreshToken)
 app.use("/api/v1/users", userRouter)
+
+app.use(auth)
 app.use("/api/v1/exercise", excerciseRouter)
 app.use("/api/v1/exercise_category", excerciseCategoryRouter)
 app.use('/api/v1/log', exerciseLogRouter)

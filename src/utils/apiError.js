@@ -25,7 +25,7 @@ class ApiError extends Error {
 
 class BadRequestException extends ApiError {
     constructor(
-        message = "Something went wrong",
+        message = "Please recheck input data and query parameters",
         errors = [],
         stack = ""
     ) {
@@ -36,6 +36,15 @@ class BadRequestException extends ApiError {
 class UnauthorizedException extends ApiError {
     constructor(
         message = "Something went wrong",
+        errors = [],
+        stack = ""
+    ) {
+        super({ statusCode: 403, errors, message, stack })
+    }
+}
+class TokenExpiredException extends ApiError {
+    constructor(
+        message = "JWT Token Expired!",
         errors = [],
         stack = ""
     ) {

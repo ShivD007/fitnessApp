@@ -1,0 +1,13 @@
+{
+  "categoryName": "Strength Training",
+  "description": "A collection of exercises focused on building muscle strength.",
+  "user": "60d5ec49e3f9c84e4567b9c1", // Replace with a valid User ObjectId
+  "images": [
+    "https://example.com/image1.jpg", // Replace with actual image URLs
+    "https://example.com/image2.jpg"
+  ],
+  "exercises": [
+    "60d5ec49e3f9c84e4567b9c2", // Replace with valid Exercise ObjectIds
+    "60d5ec49e3f9c84e4567b9c3"
+  ]
+}
