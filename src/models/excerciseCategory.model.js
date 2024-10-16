@@ -1,13 +1,7 @@
 import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid";
 
 const exerciseCategory = new mongoose.Schema(
     {
-        id: {
-            type: String,
-            unique: true,
-            default: uuidv4
-        },
         categoryName: {
             type: String,
             required: true
@@ -15,9 +9,24 @@ const exerciseCategory = new mongoose.Schema(
         description: {
             type: String,
             required: true
+        },
+        categoryImage: {
+            type: String
         }
 
-    }, { _id: false }
+    }, { timestamps: true }
 );
 
 export const ExerciseCategory = mongoose.model('ExerciseCategory', exerciseCategory)
+
+
+
+/* Tasks:   Need to check if we manually enter these categories to database?
+ 1. Get All Categories
+ 2. Search by categoryName   
+ 
+ For Admin:  
+ 1. Add Category
+ 2. update Category
+ 3. delete Category
+*/

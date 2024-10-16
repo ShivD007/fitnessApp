@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { v4 as uuidv4 } from "uuid";
+import { exerciseSetSchema, hybridSetSchema } from "./set_type.model.js"
+
 
 
 // Embedded/ Subdocuments
@@ -9,28 +10,13 @@ const exerciseEntry = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Exercise'
         },
-        duration: {
-            type: Number,
-            required: true
-        },
-        sets: {
-            type: Number,
-            required: true
-        },
-        reps: {
-            type: Number,
-            required: true,
-        }
+        hybridSets: hybridSetSchema,
+        sets: [exerciseSetSchema]
     }
 )
 
 
 const exerciseLogSchema = new mongoose.Schema({
-    id: {
-        type: String,
-        default: uuidv4,
-        unique: true
-    },
     date: {
         type: Date,
         default: Date.now
@@ -40,7 +26,19 @@ const exerciseLogSchema = new mongoose.Schema({
         ref: 'User'
     },
     exercises: [exerciseEntry],
+    userCategoryRef: {
+        type: mongoose.Schema.Types.ObjectId //this is for checking which category user is adding data to
+    },
+}, { timestamps: true });
 
-}, { _id: false });
+export const ExerciseLogModel = mongoose.model("ExerciseLog", exerciseLogSchema)
 
-export const ExerciseLogModel = mongoose.model("ExerciseLog", exerciseLogSchema) 
+
+
+
+/* Tasks:
+ 1. Get exerciseLog  -- By date, by month by userCateogry
+ 2. Need to Update User Category with PR (Whenever user entered new PR) : Little Complex so will take it up later
+3. update
+4. delete
+*/

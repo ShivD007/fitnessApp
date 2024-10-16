@@ -4,7 +4,6 @@ import { ApiResponse } from "../utils/response.js";
 import { User } from "../models/user.model.js";
 import { ACCESS_TOKEN_EXPIRY, REFRESH_TOKEN_EXPIRY, SALT } from "../constants.js";
 import bcypt from "bcrypt"
-import jwt from "jsonwebtoken"
 import { genrateToken } from "../utils/auth.js";
 
 
@@ -86,14 +85,40 @@ const login = asyncHandler(async (req, res, next) => {
 })
 
 
-// const getUsers = asyncHandler(async (req, res, next) => {
 
-//     const user = await User.find()
 
-//     res.status(200).json(new ApiResponse({
-//         status: 200, message: "login successfully", data: user
-//     }))
+const updateTokenWithRefreshToken = asyncHandler(async (req, res) => {
 
-// })
+    const { refreshToken } = req.body
 
-export { registerUser, login }
+    if (!refreshToken) {
+        throw new BadRequestException("RefreshToken is required")
+    }
+
+
+
+    jwt.verify(refreshToken, process.env.SECRET_KEY, (err, user) => {
+        if (err) {
+            if (err.name === "TokenExpiredError") {
+                next(new TokenExpirationException());
+            } else {
+                next(new BadRequestException(err.message));
+            }
+        }
+
+        const accessToken = genrateToken(user, ACCESS_TOKEN_EXPIRY)
+        const refreshToken = genrateToken(user, REFRESH_TOKEN_EXPIRY)
+
+        res.status(200).json(new ApiResponse({
+            status: 200,
+            message: "Token refreshed",
+            data: { accessToken, refreshToken }
+
+        }
+        ))
+
+    });
+
+})
+
+export { registerUser, login, updateTokenWithRefreshToken }

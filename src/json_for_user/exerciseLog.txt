@@ -1,0 +1,63 @@
+{
+  "date": "2024-10-16T00:00:00Z",
+  "user": "60d5ec49e3f9c84e4567b9c1", // Replace with a valid user ObjectId
+  "exercises": [
+    {
+      "exercise": "60d5ec49e3f9c84e4567b9c2", // Replace with a valid exercise ObjectId
+      "hybridSets": {
+        "sets": [
+          {
+            "reps": 8, // Reps for the first hybrid set
+            "weight": 90, // Weight for the first hybrid set
+            "duration": 15 // Duration for the first hybrid set (optional)
+          },
+          {
+            "reps": 6, // Reps for the second hybrid set
+            "weight": 80, // Weight for the second hybrid set
+            "duration": 10 // Duration for the second hybrid set (optional)
+          }
+        ]
+      },
+      "sets": [
+        {
+          "reps": 10, // Reps for this exercise set
+          "weight": 100, // Weight for this exercise set
+          "duration": 30 // Duration for this exercise set (optional)
+        },
+        {
+          "reps": 12, // Reps for the next exercise set
+          "weight": 110, // Weight for the next exercise set
+          "duration": 25 // Duration for the next exercise set (optional)
+        }
+      ]
+    },
+    {
+      "exercise": "60d5ec49e3f9c84e4567b9c3", // Replace with another valid exercise ObjectId
+      "hybridSets": {
+        "sets": [
+          {
+            "reps": 10, // Reps for the first hybrid set
+            "weight": 45, // Weight for the first hybrid set
+            "duration": 12 // Duration for the first hybrid set (optional)
+          },
+          {
+            "reps": 8, // Reps for the second hybrid set
+            "weight": 40, // Weight for the second hybrid set
+            "duration": 8 // Duration for the second hybrid set (optional)
+          }
+        ]
+      },
+      "sets": [
+        {
+          "reps": 15, // Reps for this exercise set
+          "weight": 50, // Weight for this exercise set
+          "duration": 25 // Duration for this exercise set (optional)
+        }
+      ]
+    }
+  ],
+  "userCategoryRef": "60d5ec49e3f9c84e4567b9c4" // Replace with a valid category ObjectId
+}
+
+
+Note: Either hybridSet or normal set and need to render the UI accordingly,
